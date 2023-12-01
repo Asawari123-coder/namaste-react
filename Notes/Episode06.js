@@ -24,6 +24,8 @@ fetch is given by browsers not JS
 
 *********  Code Slow ************
 
+If you are facing cors error then add cors plugin to browser 
+2. https://corsproxy.io/?api_url : it has limit 40 per minute
 
 
 */
