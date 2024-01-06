@@ -7,8 +7,11 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
    // State variable : React superPower : it maintains state
-    const [listOfRestaurants, setListOfRestaurants] = useState(resList)
-    const onlineStatus = useOnlineStatus();
+   
+   const [listOfRestaurants, setListOfRestaurants] = useState(resList)
+   const [searchText, setSearchText] = useState('');
+   const onlineStatus = useOnlineStatus();
+   const [, setFilteredRestaurants] = useState([]) 
     
     useEffect(()=>{
         console.log("useEffect called.....");
@@ -31,16 +34,41 @@ const Body = () => {
     return (
         <div className="body">
             <div className="filter">
+                <div className="search m-4 p-4">
+                    <input 
+                        type="text" 
+                        className="border border-solid border-black" 
+                        value={searchText}
+                        onChange={(e) => {
+                            setSearchText(e.target.value)
+                        }} />
+                    <button className="px-4 py-2 bg-green-100 m-4"
+                        onClick={() =>{
+                            console.log(searchText);
+                            const filteredRestaurants = listOfRestaurants.filter(
+                                (res) => res.data.name.toLowerCase().include(searchText.toLowerCase())
+                            );
+                            setFilteredRestaurants(filteredRestaurants)
+                        }}
+
+                    >
+                        Search
+                    </button>    
+                </div>
+                <div className="flex items-center px-4 m-4 rounded-sm">
                 <button 
-                className="filter-btn"
+                className=" px-4 py-2 bg-gray-100"
                 onClick={() =>{
-                   console.log("Button Clicked..."); 
+                  const filteredRestaurants = listOfRestaurants.filter((res) => res.data.avgRating>4);
+                  setListOfRestaurants(filteredRestaurants);
                 }}
                 >
                     Top Rated Restaurants
                 </button>
+                </div>
+               
             </div>
-            <div className="res-container">
+            <div className="flex flex-wrap">
                 {/* Restaurant cards */}
                 {
                     listOfRestaurants.map( restaurant =>

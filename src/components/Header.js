@@ -11,22 +11,22 @@ const Header = () => {
     }, [])
 
     return (
-      <div className="header">
+      <div className="flex justify-between  bg-yellow-200 shadow-lg">
           <div className="logo-container">
-              <img className="logo" src={LOGO_URL}/>
+              <img className="w-48" src={LOGO_URL}/>
           </div>
-          <div className="nav-items">
-              <ul>
+          <div className="flex items-center">
+              <ul className="flex p-4 m-4">
               <li>OnlineStatus- { onlineStatus ? ":back:" : ":grin:" } </li>
-              <li>
+              <li className="px-4">
                     <Link to='/'> Home</Link>
                   </li>
-                  <li>
+                  <li className="px-4">
                     <Link to='/about'> About Us</Link>
                   </li>
-                  <li> <Link to='/contact'> Contact </Link></li>
-                  <li> <Link to='/grocery'> Grocery </Link></li>
-                  <li>Cart</li>
+                  <li className="px-4"> <Link to='/contact'> Contact </Link></li>
+                  <li className="px-4"> <Link to='/grocery'> Grocery </Link></li>
+                  <li className="px-4">Cart</li>
                   <button 
                   className="login"
                   onClick={() => {
